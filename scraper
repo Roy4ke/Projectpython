@@ -1,0 +1,15 @@
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+
+cityInput = input('co tam cos: ')
+cityInput = cityInput.lower()
+
+url = 'https://www.timeanddate.com/weather/poland/'+ cityInput
+html = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(html, 'html.parser')
+location = soup.find(class_ = 'headline-banner__title')
+temperature = soup.find(class_ = 'h2').get_text()
+moreInfo = soup.find(class_ = 'p'). get_text()
+
+print('Lokalizacja: ', location)
+print('Temperatura: ', temperature)
