@@ -1,15 +1,81 @@
-import urllib.request, urllib.parse, urllib.error
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
+import csv
+import time
 
-cityInput = input('co tam cos: ')
-cityInput = cityInput.lower()
+def get_html_selenium(url):
+    options = Options()
+    options.add_argument("--headless") 
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
 
-url = 'https://www.timeanddate.com/weather/poland/'+ cityInput
-html = urllib.request.urlopen(url).read()
-soup = BeautifulSoup(html, 'html.parser')
-location = soup.find(class_ = 'headline-banner__title')
-temperature = soup.find(class_ = 'h2').get_text()
-moreInfo = soup.find(class_ = 'p'). get_text()
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver.get(url)
+    time.sleep(3) 
+    html = driver.page_source
+    driver.quit()
+    return html
 
-print('Lokalizacja: ', location)
-print('Temperatura: ', temperature)
+def scrape_hourly_weather(html):
+    soup = BeautifulSoup(html, "html.parser")
+    items = soup.select("li.city-list__item")
+
+    weather_data = []
+    for item in items:
+        godzina = item.select_one(".city-list__title").text.strip()
+        temperatura = item.select_one(".json-temperature").text.strip()
+        warunki = item.select_one(".city-list__temp--string").text.strip()
+        odczuwalna = item.select_one(".json-temp-sensed").text.strip()
+        wiatr = item.select_one(".json-wind-speed").text.strip()
+        porywy = item.select_one(".json-wind-speed-max").text.strip()
+        opady = item.select_one(".json-raining-amount").text.strip()
+        cisnienie = item.select_one(".json-pressure").text.strip()
+        wilgotnosc = item.select_one(".json-humidity").text.strip()
+        chmury = item.select_one(".json-clouds-amount").text.strip()
+        termika = item.select_one(".json-thermals").text.strip()
+        biomet = item.select_one(".json-biomet").text.strip()
+
+        weather_data.append({
+            "Godzina": godzina,
+            "Temp (°C)": temperatura,
+            "Odczuwalna (°C)": odczuwalna,
+            "Warunki": warunki,
+            "Wiatr": wiatr,
+            "Porywy": porywy,
+            "Opady": opady,
+            "Ciśnienie": cisnienie,
+            "Wilgotność": wilgotnosc,
+            "Chmury": chmury,
+            "Termika": termika,
+            "Biomet": biomet
+        })
+    return weather_data
+
+def save_to_csv(data, filename="pogoda.csv"):
+    if not data:
+        print("Nie ma co zapisać!")
+        return
+    import os
+
+    file_exists = os.path.isfile(filename)
+    keys = data[0].keys()
+
+    with open(filename, "a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=keys)
+        if not file_exists:
+            writer.writeheader()  # tylko raz na początku
+        writer.writerows(data)
+
+    print(f"Dane zostały zapisane w pliku: {filename}")
+
+
+#URL do strony z prognozą godzinową
+city_url = "https://www.twojapogoda.pl/prognoza-godzinowa-polska/podkarpackie-rzeszow/" 
+
+#
+html = get_html_selenium(city_url)
+data = scrape_hourly_weather(html)
+save_to_csv(data)
