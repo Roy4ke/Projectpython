@@ -133,7 +133,6 @@ class WeatherAPP(QWidget):
         self.description_label.setText(opis_pogody)
         weather_id = data["weather"][0]["id"]
         self.emoji_label.setText(self.get_weather_emoji(weather_id))
-
     #Funkcja pomocnicza do przypisania emoji na podstawie kodu pogody
     @staticmethod #metoda statyczna, nie korzysta z klasy self, brak dostępu do atrybutów innej klasy
     def get_weather_emoji(weather_id):
