@@ -1,8 +1,9 @@
-#importowanie potrzebnyvh bibliotek
+#importowanie potrzebnych bibliotek
 import sys
 import requests #używane do wysyłania zapytań HTTP do API pogodowego
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout) # elementy GUI
 from PyQt5.QtCore import Qt
+
 #Główna klasa aplikacji pogodowej
 class WeatherAPP(QWidget):
     def __init__(self):
@@ -27,6 +28,7 @@ class WeatherAPP(QWidget):
         vbox.addWidget(self.temperature_label)
         vbox.addWidget(self.emoji_label)
         vbox.addWidget(self.description_label)
+
         #Wyśrodkowanie tekstu w elementach
         self.setLayout(vbox)
         self.city_label.setAlignment(Qt.AlignCenter)
@@ -34,6 +36,7 @@ class WeatherAPP(QWidget):
         self.temperature_label.setAlignment(Qt.AlignCenter)
         self.emoji_label.setAlignment(Qt.AlignCenter)
         self.description_label.setAlignment(Qt.AlignCenter)
+
         #Nadanie identyfikatorów obiektom do stylizacji
         self.city_label.setObjectName("city_label")
         self.city_input.setObjectName("city_input")
@@ -41,6 +44,7 @@ class WeatherAPP(QWidget):
         self.temperature_label.setObjectName("temperature_label")
         self.emoji_label.setObjectName("emoji_label")
         self.description_label.setObjectName("description_label")
+
         #Wygenerowanie oprawy graficznej przy pomocy CSS
         self.setStyleSheet("""
         Qlabel, QPushButton{
@@ -78,7 +82,8 @@ class WeatherAPP(QWidget):
         print("Oto pogoda w podanym przez ciebie mieście")
         api_key="4bf10fb4b448ee5f5ed877ef145966aa" #klucz api niezbędny do działania aplikacji
         miasto = self.city_input.text() #odczyt miasta wprowadzonego przez użytkownika
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={miasto}&appid={api_key}&units=metric"
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={miasto}&appid={api_key}&units=metric&lang=pl"
+
         #Wysłanie zapytania do API
         try:
             response = requests.get(url)
@@ -88,6 +93,7 @@ class WeatherAPP(QWidget):
             #Jeśli wszystko OK (kod HTTP 200) — wyświetl dane pogodowe
             if data["cod"]== 200:
                 self.display_weater(data)
+
         #Obsługa różnych kodów błędów HTTP
         except requests.exceptions.HTTPError as http_error:
             match response.status_code:
@@ -109,6 +115,7 @@ class WeatherAPP(QWidget):
                     self.display_error("Przekroczenie limitu czasu bramy\n Brak odpowiedzi ze strony serwera")
                 case _:
                     self.display_error(f"Wystapił nieoczekiwany błąd \n {http_error} ")
+
         #Obsługa innych potencjalnych problemów z połączeniem
         except requests.exceptions.ConnectionError :
             self.display_error("Błąd połącznie \n Sprawdź czy jesteś połącziny do internetu")
@@ -118,23 +125,16 @@ class WeatherAPP(QWidget):
             self.display_error("Za dużo przekierowań \n sparwdź URL")
         except requests.exceptions.RequestException as req_error:
             self.display_error(f"Błąd żądania")
+
     #Funkcja do wyświetlania błędów w GUI
     def display_error(self, message):
         self.temperature_label.setStyleSheet("font-size: 24px;")
         self.temperature_label.setText(message)
         self.emoji_label.clear()
         self.description_label.clear()
-    #Funkcja do wyświetlania danych pogodowych
-    def display_weater(self, data):
-        self.temperature_label.setStyleSheet("font-size: 34px;")
-        temperatura = data["main"]["temp"]
-        self.temperature_label.setText(f"{temperatura:.0f}°C")
-        opis_pogody = data["weather"][0]["description"]
-        self.description_label.setText(opis_pogody)
-        weather_id = data["weather"][0]["id"]
-        self.emoji_label.setText(self.get_weather_emoji(weather_id))
-    #Funkcja pomocnicza do przypisania emoji na podstawie kodu pogody
-    @staticmethod #metoda statyczna, nie korzysta z klasy self, brak dostępu do atrybutów innej klasy
+
+    # Funkcja pomocnicza do przypisania emoji na podstawie kodu pogody
+    @staticmethod  # metoda statyczna, nie korzysta z klasy self, brak dostępu do atrybutów innej klasy
     def get_weather_emoji(weather_id):
         if 200 <= weather_id <= 232:
             return "🌩"
@@ -158,6 +158,51 @@ class WeatherAPP(QWidget):
             return "☁"
         else:
             return ""
+    #ustawienie tła zależnie od otyrzymanej pogody
+    def set_background_by_weather(self, weather_id):
+        if 200 <= weather_id <= 232:
+            color = "#595757"
+        elif 300 <= weather_id <= 321:
+            color = "#a6a2a2"
+        elif 500 <= weather_id <= 531:
+            color = "#729eba"
+        elif 600 <= weather_id <= 622:
+            color = "#F0FFFF"
+        elif 701 <= weather_id <= 741:
+            color = "#e0dede"
+        elif weather_id == 762:
+            color = "#FF6347"
+        elif weather_id == 771:
+            color = "#49658a"
+        elif weather_id == 781:
+            color = "#708090"
+        elif weather_id == 800:
+            color = "#fffda8"
+        elif 801 <= weather_id <= 804:
+            color = "#e8e8e8"
+        else:
+            color = "#FFFFFF"
+        self.setStyleSheet(self.styleSheet() + f"""
+            QWidget {{
+                background-color: {color};
+            }}
+            QLineEdit#city_input {{
+                background-color: rgba(255, 255, 255, 0.6);
+            }}
+            QPushButton#get_weather_button{{
+                background-color: rgba(255, 255, 255, 0.6);
+            }}
+        """)
+    #Funkcja do wyświetlania danych pogodowych
+    def display_weater(self, data):
+        self.temperature_label.setStyleSheet("font-size: 34px;")
+        temperatura = data["main"]["temp"]
+        self.temperature_label.setText(f"{temperatura:.0f}°C")
+        opis_pogody = data["weather"][0]["description"]
+        self.description_label.setText(opis_pogody)
+        weather_id = data["weather"][0]["id"]
+        self.emoji_label.setText(self.get_weather_emoji(weather_id))
+        self.set_background_by_weather(weather_id)
 #Uruchomienie aplikacji
 if __name__ == '__main__':
     app = QApplication(sys.argv) #utworzenie aplikacji
