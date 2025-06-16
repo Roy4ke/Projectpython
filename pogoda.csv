@@ -1,0 +1,97 @@
+Godzina,Temp (°C),Odczuwalna (°C),Warunki,Wiatr,Porywy,Opady,Ciśnienie,Wilgotność,Chmury,Termika,Biomet
+12:00,17,15,deszcz,31 km/h,55 km/h,"0,1 mm / 1h",1015 hPa,81%,90% nieba,ciepło i mokro,niekorzystny
+13:00,17,16,deszcz,34 km/h,55 km/h,"0,1 mm / 1h",1015 hPa,78%,90% nieba,ciepło i mokro,niekorzystny
+14:00,17,16,deszcz,36 km/h,60 km/h,"0,1 mm / 1h",1016 hPa,75%,90% nieba,ciepło i mokro,niekorzystny
+15:00,17,15,deszcz,34 km/h,55 km/h,"0,1 mm / 1h",1016 hPa,77%,90% nieba,ciepło i mokro,niekorzystny
+16:00,17,15,deszcz,31 km/h,55 km/h,"0,1 mm / 1h",1016 hPa,80%,90% nieba,ciepło i mokro,niekorzystny
+17:00,16,15,deszcz,29 km/h,50 km/h,"0,1 mm / 1h",1017 hPa,82%,90% nieba,ciepło i mokro,niekorzystny
+18:00,16,14,prawie bezchmurnie,27 km/h,50 km/h,0 mm / 1h,1017 hPa,84%,10-20% nieba,ciepło i sucho,korzystny
+19:00,15,13,prawie bezchmurnie,24 km/h,45 km/h,0 mm / 1h,1018 hPa,85%,10-20% nieba,chłodno i sucho,korzystny
+20:00,14,12,prawie bezchmurnie,22 km/h,45 km/h,0 mm / 1h,1018 hPa,87%,10-20% nieba,chłodno i sucho,korzystny
+21:00,13,12,prawie bezchmurnie,19 km/h,40 km/h,0 mm / 1h,1019 hPa,89%,10-20% nieba,chłodno i sucho,korzystny
+22:00,13,11,prawie bezchmurnie,17 km/h,40 km/h,0 mm / 1h,1020 hPa,90%,10-20% nieba,chłodno i sucho,korzystny
+23:00,12,10,prawie bezchmurnie,14 km/h,25 km/h,0 mm / 1h,1020 hPa,92%,10-20% nieba,chłodno i sucho,korzystny
+12:00,17,15,deszcz,31 km/h,55 km/h,"0,1 mm / 1h",1015 hPa,81%,90% nieba,ciepło i mokro,niekorzystny
+13:00,17,16,deszcz,34 km/h,55 km/h,"0,1 mm / 1h",1015 hPa,78%,90% nieba,ciepło i mokro,niekorzystny
+14:00,17,16,deszcz,36 km/h,60 km/h,"0,1 mm / 1h",1016 hPa,75%,90% nieba,ciepło i mokro,niekorzystny
+15:00,17,15,deszcz,34 km/h,55 km/h,"0,1 mm / 1h",1016 hPa,77%,90% nieba,ciepło i mokro,niekorzystny
+16:00,17,15,deszcz,31 km/h,55 km/h,"0,1 mm / 1h",1016 hPa,80%,90% nieba,ciepło i mokro,niekorzystny
+17:00,16,15,deszcz,29 km/h,50 km/h,"0,1 mm / 1h",1017 hPa,82%,90% nieba,ciepło i mokro,niekorzystny
+18:00,16,14,prawie bezchmurnie,27 km/h,50 km/h,0 mm / 1h,1017 hPa,84%,10-20% nieba,ciepło i sucho,korzystny
+19:00,15,13,prawie bezchmurnie,24 km/h,45 km/h,0 mm / 1h,1018 hPa,85%,10-20% nieba,chłodno i sucho,korzystny
+20:00,14,12,prawie bezchmurnie,22 km/h,45 km/h,0 mm / 1h,1018 hPa,87%,10-20% nieba,chłodno i sucho,korzystny
+21:00,13,12,prawie bezchmurnie,19 km/h,40 km/h,0 mm / 1h,1019 hPa,89%,10-20% nieba,chłodno i sucho,korzystny
+22:00,13,11,prawie bezchmurnie,17 km/h,40 km/h,0 mm / 1h,1020 hPa,90%,10-20% nieba,chłodno i sucho,korzystny
+23:00,12,10,prawie bezchmurnie,14 km/h,25 km/h,0 mm / 1h,1020 hPa,92%,10-20% nieba,chłodno i sucho,korzystny
+20:00,16,15,zachmurzenie umiarkowane,11 km/h,25 km/h,0 mm / 1h,1021 hPa,72%,50-60% nieba,ciepło i sucho,korzystny
+21:00,14,13,prawie bezchmurnie,10 km/h,25 km/h,0 mm / 1h,1022 hPa,77%,10-20% nieba,chłodno i sucho,korzystny
+22:00,12,12,prawie bezchmurnie,8 km/h,13 km/h,0 mm / 1h,1022 hPa,83%,10-20% nieba,chłodno i sucho,korzystny
+23:00,11,10,prawie bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1023 hPa,88%,10-20% nieba,chłodno i sucho,korzystny
+00:00,10,9,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1024 hPa,90%,10-20% nieba,zimno i sucho,korzystny
+01:00,9,9,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1024 hPa,92%,10-20% nieba,zimno i sucho,korzystny
+02:00,8,8,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1024 hPa,94%,10-20% nieba,zimno i sucho,korzystny
+03:00,7,7,bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1024 hPa,95%,0% nieba,zimno i sucho,korzystny
+04:00,6,5,bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1025 hPa,97%,0% nieba,zimno i sucho,korzystny
+05:00,5,4,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1025 hPa,98%,0% nieba,zimno i sucho,korzystny
+06:00,7,5,zachmurzenie małe,9 km/h,20 km/h,0 mm / 1h,1025 hPa,89%,20-30% nieba,zimno i sucho,korzystny
+07:00,8,7,zachmurzenie małe,12 km/h,25 km/h,0 mm / 1h,1025 hPa,81%,20-30% nieba,zimno i sucho,korzystny
+19:00,17,17,zachmurzenie małe,9 km/h,20 km/h,0 mm / 1h,1023 hPa,75%,20-30% nieba,ciepło i sucho,korzystny
+20:00,15,15,zachmurzenie małe,7 km/h,12 km/h,0 mm / 1h,1023 hPa,81%,20-30% nieba,ciepło i sucho,korzystny
+21:00,14,14,zachmurzenie małe,6 km/h,11 km/h,0 mm / 1h,1023 hPa,82%,20-30% nieba,chłodno i sucho,korzystny
+22:00,13,13,zachmurzenie małe,5 km/h,10 km/h,0 mm / 1h,1023 hPa,82%,20-30% nieba,chłodno i sucho,korzystny
+23:00,11,12,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1024 hPa,83%,20-30% nieba,chłodno i sucho,korzystny
+00:00,11,11,zachmurzenie umiarkowane,4 km/h,7 km/h,0 mm / 1h,1024 hPa,84%,40-50% nieba,chłodno i sucho,korzystny
+01:00,10,10,zachmurzenie umiarkowane,4 km/h,7 km/h,0 mm / 1h,1024 hPa,84%,40-50% nieba,chłodno i sucho,korzystny
+02:00,9,9,zachmurzenie umiarkowane,4 km/h,7 km/h,0 mm / 1h,1024 hPa,85%,40-50% nieba,zimno i sucho,korzystny
+03:00,9,9,zachmurzenie umiarkowane,4 km/h,7 km/h,0 mm / 1h,1023 hPa,87%,40-50% nieba,zimno i sucho,korzystny
+04:00,8,8,zachmurzenie umiarkowane,4 km/h,7 km/h,0 mm / 1h,1023 hPa,88%,40-50% nieba,zimno i sucho,korzystny
+05:00,7,7,zachmurzenie umiarkowane,4 km/h,7 km/h,0 mm / 1h,1023 hPa,90%,40-50% nieba,zimno i sucho,korzystny
+06:00,10,10,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1023 hPa,85%,10-20% nieba,zimno i sucho,korzystny
+15:00,24,26,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1020 hPa,57%,20-30% nieba,ciepło i sucho,neutralny
+16:00,24,26,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1019 hPa,57%,20-30% nieba,ciepło i sucho,neutralny
+17:00,24,25,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1019 hPa,57%,20-30% nieba,ciepło i sucho,neutralny
+18:00,22,23,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,64%,10-20% nieba,ciepło i sucho,neutralny
+19:00,20,21,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1018 hPa,71%,10-20% nieba,ciepło i sucho,neutralny
+20:00,19,19,prawie bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,78%,10-20% nieba,ciepło i sucho,korzystny
+21:00,17,18,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,81%,0% nieba,ciepło i sucho,korzystny
+22:00,16,16,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,84%,0% nieba,ciepło i sucho,korzystny
+23:00,15,15,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1019 hPa,87%,0% nieba,chłodno i sucho,korzystny
+00:00,14,14,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1019 hPa,88%,10-20% nieba,chłodno i sucho,korzystny
+01:00,13,13,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,89%,10-20% nieba,chłodno i sucho,korzystny
+02:00,12,13,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,90%,10-20% nieba,chłodno i sucho,korzystny
+17:00,24,25,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1019 hPa,57%,20-30% nieba,ciepło i sucho,neutralny
+18:00,22,23,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,64%,10-20% nieba,ciepło i sucho,neutralny
+19:00,20,21,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1018 hPa,71%,10-20% nieba,ciepło i sucho,neutralny
+20:00,19,19,prawie bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,78%,10-20% nieba,ciepło i sucho,korzystny
+21:00,17,18,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,81%,0% nieba,ciepło i sucho,korzystny
+22:00,16,16,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,84%,0% nieba,ciepło i sucho,korzystny
+23:00,15,15,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1019 hPa,87%,0% nieba,chłodno i sucho,korzystny
+00:00,14,14,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1019 hPa,88%,10-20% nieba,chłodno i sucho,korzystny
+01:00,13,13,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,89%,10-20% nieba,chłodno i sucho,korzystny
+02:00,12,13,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,90%,10-20% nieba,chłodno i sucho,korzystny
+03:00,12,12,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,92%,10-20% nieba,chłodno i sucho,korzystny
+04:00,11,11,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,93%,10-20% nieba,chłodno i sucho,korzystny
+17:00,24,25,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1019 hPa,57%,20-30% nieba,ciepło i sucho,neutralny
+18:00,22,23,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,64%,10-20% nieba,ciepło i sucho,neutralny
+19:00,20,21,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1018 hPa,71%,10-20% nieba,ciepło i sucho,neutralny
+20:00,19,19,prawie bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,78%,10-20% nieba,ciepło i sucho,korzystny
+21:00,17,18,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,81%,0% nieba,ciepło i sucho,korzystny
+22:00,16,16,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,84%,0% nieba,ciepło i sucho,korzystny
+23:00,15,15,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1019 hPa,87%,0% nieba,chłodno i sucho,korzystny
+00:00,14,14,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1019 hPa,88%,10-20% nieba,chłodno i sucho,korzystny
+01:00,13,13,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,89%,10-20% nieba,chłodno i sucho,korzystny
+02:00,12,13,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,90%,10-20% nieba,chłodno i sucho,korzystny
+03:00,12,12,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,92%,10-20% nieba,chłodno i sucho,korzystny
+04:00,11,11,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,93%,10-20% nieba,chłodno i sucho,korzystny
+17:00,24,25,zachmurzenie małe,4 km/h,7 km/h,0 mm / 1h,1019 hPa,57%,20-30% nieba,ciepło i sucho,neutralny
+18:00,22,23,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,64%,10-20% nieba,ciepło i sucho,neutralny
+19:00,20,21,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1018 hPa,71%,10-20% nieba,ciepło i sucho,neutralny
+20:00,19,19,prawie bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,78%,10-20% nieba,ciepło i sucho,korzystny
+21:00,17,18,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,81%,0% nieba,ciepło i sucho,korzystny
+22:00,16,16,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1018 hPa,84%,0% nieba,ciepło i sucho,korzystny
+23:00,15,15,bezchmurnie,7 km/h,12 km/h,0 mm / 1h,1019 hPa,87%,0% nieba,chłodno i sucho,korzystny
+00:00,14,14,prawie bezchmurnie,6 km/h,11 km/h,0 mm / 1h,1019 hPa,88%,10-20% nieba,chłodno i sucho,korzystny
+01:00,13,13,prawie bezchmurnie,5 km/h,10 km/h,0 mm / 1h,1018 hPa,89%,10-20% nieba,chłodno i sucho,korzystny
+02:00,12,13,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,90%,10-20% nieba,chłodno i sucho,korzystny
+03:00,12,12,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,92%,10-20% nieba,chłodno i sucho,korzystny
+04:00,11,11,prawie bezchmurnie,4 km/h,7 km/h,0 mm / 1h,1018 hPa,93%,10-20% nieba,chłodno i sucho,korzystny
