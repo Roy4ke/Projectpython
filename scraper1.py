@@ -60,26 +60,33 @@ def scrape_hourly_weather(html):
     return weather_data
 
 def save_to_csv(data, filename="pogoda.csv"):
-    if not data:
-        print("❌ Brak danych do zapisania.")
+    if not data or not isinstance(data, list) or not isinstance(data[0], dict):
+        print("❌ Brak danych lub nieprawidłowy format danych do zapisania.")
         return
-    file_exists = os.path.isfile(filename)
-    keys = data[0].keys()
-    with open(filename, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=keys)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerows(data)
-    print(f"✅ Dane dopisane do pliku: {filename}")
 
-def plot_column(df, column_name):
-    df[column_name] = (
-        df[column_name]
-        .astype(str)
-        .str.replace(",", ".", regex=False)
-        .str.extract(r"([-+]?\d*\.?\d+)", expand=False)
-        .astype(float)
-    )
+    keys = list(data[0].keys())
+
+    with open(filename, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=keys)
+        writer.writeheader()  # <-- To zapisuje nagłówki
+        writer.writerows(data)
+
+    print(f"✅------------> Dane zapisane do pliku (nadpisano): {filename}")
+
+
+def plot_column(df, column_name, filename):
+    try:
+        df[column_name] = (
+            df[column_name]
+            .astype(str)
+            .str.replace(",", ".", regex=False)
+            .str.extract(r"([-+]?\d*\.?\d+)", expand=False)
+            .astype(float)
+        )
+    except Exception as e:
+        print(f"Błąd przy konwersji kolumny {column_name}: {e}")
+        return
+
     plt.figure(figsize=(10, 4))
     plt.plot(df["Godzina"], df[column_name], marker="o")
     plt.title(f"{column_name} wg godziny")
@@ -88,22 +95,24 @@ def plot_column(df, column_name):
     plt.xticks(rotation=45)
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(filename, format="png")
+    plt.close()
+    print(f"✅ ----------------> Wykres zapisany jako: {filename}")
 
 def plot_temperature_chart():
     df = pd.read_csv("pogoda.csv", encoding="utf-8")
     df = df.dropna(subset=["Godzina"])
     df = df.tail(24)  # tylko ostatni dzień
 
-    plot_column(df, "Temp (°C)")
-    plot_column(df, "Wilgotność")
-    plot_column(df, "Ciśnienie")
-    plot_column(df, "Wiatr")
+    plot_column(df, "Temp (°C)", "temp.png")
+    plot_column(df, "Wilgotność", "wilgotnosc.png")
+    plot_column(df, "Ciśnienie", "cisnienie.png")
+    plot_column(df, "Wiatr", "wiatr.png")
 
-# URL do strony
+# URL do strony pogodowej
 city_url = "https://www.twojapogoda.pl/prognoza-godzinowa-polska/podkarpackie-rzeszow/"
 
-# Główna logika
+# Główna logika działania
 html = get_html_selenium(city_url)
 data = scrape_hourly_weather(html)
 save_to_csv(data)
