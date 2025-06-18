@@ -1,27 +1,29 @@
-#importowanie potrzebnych bibliotek
+# importowanie potrzebnych bibliotek
 import sys
-import requests #używane do wysyłania zapytań HTTP do API pogodowego
-from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout) # elementy GUI
+import requests  # używane do wysyłania zapytań HTTP do API pogodowego
+from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout)  # elementy GUI
 from PyQt5.QtCore import Qt
+import scraper1
 
-#Główna klasa aplikacji pogodowej
+
+# Główna klasa aplikacji pogodowej
 class WeatherAPP(QWidget):
     def __init__(self):
         super().__init__()
         # Tworzenie elementów interfejsu
-        self.city_label=QLabel("Podaj nazwę miasta", self) #etykieta z prośbą o wpisanie miasta
-        self.city_input = QLineEdit(self) #pole do wpisania miasta
-        self.get_weather_button = QPushButton("Podaj", self) #przycisk do pobrania pogody
-        self.temperature_label = QLabel( self) #etykieta do wyświetlenia temperatury
-        self.emoji_label= QLabel(self) #etykieta do wyświetlenia emoji pogody
-        self.description_label = QLabel( self) #etykieta do wyświetlenia opisu pogody
-        self.initUI() #wyświetlenie interfejsu użytkownika
+        self.city_label = QLabel("Podaj nazwę miasta", self)  # etykieta z prośbą o wpisanie miasta
+        self.city_input = QLineEdit(self)  # pole do wpisania miasta
+        self.get_weather_button = QPushButton("Podaj", self)  # przycisk do pobrania pogody
+        self.temperature_label = QLabel(self)  # etykieta do wyświetlenia temperatury
+        self.emoji_label = QLabel(self)  # etykieta do wyświetlenia emoji pogody
+        self.description_label = QLabel(self)  # etykieta do wyświetlenia opisu pogody
+        self.initUI()  # wyświetlenie interfejsu użytkownika
 
     # Ustawienia graficznego interfejsu użytkownika (GUI)
     def initUI(self):
-        self.setWindowTitle("Aplikacja Pogodowa") #Nazwa wyświetlanej aplikacji
-        vbox = QVBoxLayout() #pionowy układ wyświtlanej zawartości
-        #Dodanie widgetów do layoutu
+        self.setWindowTitle("Aplikacja Pogodowa")  # Nazwa wyświetlanej aplikacji
+        vbox = QVBoxLayout()  # pionowy układ wyświtlanej zawartości
+        # Dodanie widgetów do layoutu
         vbox.addWidget(self.city_label)
         vbox.addWidget(self.city_input)
         vbox.addWidget(self.get_weather_button)
@@ -29,7 +31,7 @@ class WeatherAPP(QWidget):
         vbox.addWidget(self.emoji_label)
         vbox.addWidget(self.description_label)
 
-        #Wyśrodkowanie tekstu w elementach
+        # Wyśrodkowanie tekstu w elementach
         self.setLayout(vbox)
         self.city_label.setAlignment(Qt.AlignCenter)
         self.city_input.setAlignment(Qt.AlignCenter)
@@ -37,7 +39,7 @@ class WeatherAPP(QWidget):
         self.emoji_label.setAlignment(Qt.AlignCenter)
         self.description_label.setAlignment(Qt.AlignCenter)
 
-        #Nadanie identyfikatorów obiektom do stylizacji
+        # Nadanie identyfikatorów obiektom do stylizacji
         self.city_label.setObjectName("city_label")
         self.city_input.setObjectName("city_input")
         self.get_weather_button.setObjectName("get_weather_button")
@@ -45,7 +47,7 @@ class WeatherAPP(QWidget):
         self.emoji_label.setObjectName("emoji_label")
         self.description_label.setObjectName("description_label")
 
-        #Wygenerowanie oprawy graficznej przy pomocy CSS
+        # Wygenerowanie oprawy graficznej przy pomocy CSS
         self.setStyleSheet("""
         Qlabel, QPushButton{
             font-family: Times New Roman;
@@ -72,29 +74,29 @@ class WeatherAPP(QWidget):
         QLabel#description_label{
             font-size: 50px;
         }
-        
+
         """)
-        #Powiązanie przycisku z funkcją pobierającą dane pogodowe
+        # Powiązanie przycisku z funkcją pobierającą dane pogodowe
         self.get_weather_button.clicked.connect(self.get_weather)
 
-    #Funkcja do pobierania danych pogodowych z API OpenWeatherMap
+    # Funkcja do pobierania danych pogodowych z API OpenWeatherMap
     def get_weather(self):
         print("Oto pogoda w podanym przez ciebie mieście")
-        api_key="4bf10fb4b448ee5f5ed877ef145966aa" #klucz api niezbędny do działania aplikacji
-        miasto = self.city_input.text() #odczyt miasta wprowadzonego przez użytkownika
+        api_key = "4bf10fb4b448ee5f5ed877ef145966aa"  # klucz api niezbędny do działania aplikacji
+        miasto = self.city_input.text()  # odczyt miasta wprowadzonego przez użytkownika
         url = f"https://api.openweathermap.org/data/2.5/weather?q={miasto}&appid={api_key}&units=metric&lang=pl"
 
-        #Wysłanie zapytania do API
+        # Wysłanie zapytania do API
         try:
             response = requests.get(url)
             response.raise_for_status()
             data = response.json()
             print(data)
-            #Jeśli wszystko OK (kod HTTP 200) — wyświetl dane pogodowe
-            if data["cod"]== 200:
+            # Jeśli wszystko OK (kod HTTP 200) — wyświetl dane pogodowe
+            if data["cod"] == 200:
                 self.display_weater(data)
 
-        #Obsługa różnych kodów błędów HTTP
+        # Obsługa różnych kodów błędów HTTP
         except requests.exceptions.HTTPError as http_error:
             match response.status_code:
                 case 400:
@@ -116,17 +118,17 @@ class WeatherAPP(QWidget):
                 case _:
                     self.display_error(f"Wystapił nieoczekiwany błąd \n {http_error} ")
 
-        #Obsługa innych potencjalnych problemów z połączeniem
-        except requests.exceptions.ConnectionError :
+        # Obsługa innych potencjalnych problemów z połączeniem
+        except requests.exceptions.ConnectionError:
             self.display_error("Błąd połącznie \n Sprawdź czy jesteś połącziny do internetu")
-        except requests.exceptions.Timeout :
+        except requests.exceptions.Timeout:
             self.display_error("Przekrooczono limit czasu na odpowiedź ")
-        except requests.exceptions.TooManyRedirects :
+        except requests.exceptions.TooManyRedirects:
             self.display_error("Za dużo przekierowań \n sparwdź URL")
         except requests.exceptions.RequestException as req_error:
             self.display_error(f"Błąd żądania")
 
-    #Funkcja do wyświetlania błędów w GUI
+    # Funkcja do wyświetlania błędów w GUI
     def display_error(self, message):
         self.temperature_label.setStyleSheet("font-size: 24px;")
         self.temperature_label.setText(message)
@@ -158,7 +160,8 @@ class WeatherAPP(QWidget):
             return "☁"
         else:
             return ""
-    #ustawienie tła zależnie od otyrzymanej pogody
+
+    # ustawienie tła zależnie od otyrzymanej pogody
     def set_background_by_weather(self, weather_id):
         if 200 <= weather_id <= 232:
             color = "#595757"
@@ -193,7 +196,8 @@ class WeatherAPP(QWidget):
                 background-color: rgba(255, 255, 255, 0.6);
             }}
         """)
-    #Funkcja do wyświetlania danych pogodowych
+
+    # Funkcja do wyświetlania danych pogodowych
     def display_weater(self, data):
         self.temperature_label.setStyleSheet("font-size: 34px;")
         temperatura = data["main"]["temp"]
@@ -203,9 +207,12 @@ class WeatherAPP(QWidget):
         weather_id = data["weather"][0]["id"]
         self.emoji_label.setText(self.get_weather_emoji(weather_id))
         self.set_background_by_weather(weather_id)
-#Uruchomienie aplikacji
+
+
+# Uruchomienie aplikacji
 if __name__ == '__main__':
-    app = QApplication(sys.argv) #utworzenie aplikacji
+    city_url = "https://www.twojapogoda.pl/prognoza-godzinowa-polska/podkarpackie-rzeszow/"
+    app = QApplication(sys.argv)  # utworzenie aplikacji
     weather_app = WeatherAPP()
-    weather_app.show() #pokazanie okna
-    sys.exit(app.exec_()) #zakończenie aplikacji po zamknięciu
+    weather_app.show()  # pokazanie okna
+    sys.exit(app.exec_())  # zakończenie aplikacji po zamknięciu
