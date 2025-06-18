@@ -4,8 +4,6 @@ import requests  # używane do wysyłania zapytań HTTP do API pogodowego
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout)  # elementy GUI
 from PyQt5.QtCore import Qt
 import scraper1
-
-
 # Główna klasa aplikacji pogodowej
 class WeatherAPP(QWidget):
     def __init__(self):
