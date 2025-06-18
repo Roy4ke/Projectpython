@@ -1,6 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.edge.service import Service
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from bs4 import BeautifulSoup
 import csv
 import time
@@ -8,11 +6,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def get_html_selenium(url):
-    options = webdriver.EdgeOptions()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
     driver.get(url)
     time.sleep(3)
     html = driver.page_source
@@ -71,7 +67,6 @@ def save_to_csv(data, filename="pogoda.csv"):
 
     print(f"✅------------> Dane zapisane do pliku (nadpisano): {filename}")
 
-def plot_column(df, column_name):
     df[column_name] = (
         df[column_name]
         .astype(str)
@@ -87,28 +82,15 @@ def plot_column(df, column_name):
     plt.xticks(rotation=45)
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
 
 def plot_temperature_chart():
     df = pd.read_csv("pogoda.csv", encoding="utf-8")
     df = df.dropna(subset=["Godzina"])
-    df = df.tail(12)  # tylko nastepne 12h
 
-    plot_column(df, "Temp (°C)")
-    plot_column(df, "Wilgotność")
-    plot_column(df, "Ciśnienie")
-    plot_column(df, "Wiatr")
 
-# URL do strony
 city_url = "https://www.twojapogoda.pl/prognoza-godzinowa-polska/podkarpackie-rzeszow/"
 
-# Główna logika
-def run_scraper_for_city(city_url):
     html = get_html_selenium(city_url)
     data = scrape_hourly_weather(html)
     save_to_csv(data)
     plot_temperature_chart()
-
-
-city_url = "https://www.twojapogoda.pl/prognoza-godzinowa-polska/podkarpackie-rzeszow/"
-run_scraper_for_city(city_url)
