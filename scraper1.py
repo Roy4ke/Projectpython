@@ -87,7 +87,6 @@ def plot_temperature_chart():
     df = pd.read_csv("pogoda.csv", encoding="utf-8")
     df = df.dropna(subset=["Godzina"])
 
-
 city_url = "https://www.twojapogoda.pl/prognoza-godzinowa-polska/podkarpackie-rzeszow/"
 
     html = get_html_selenium(city_url)
